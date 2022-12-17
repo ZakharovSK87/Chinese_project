@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<div class="container">
+    <form action="{% url 'new_deal' %}" method="POST">
+        <h2> Оформление Заказа </h2>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Откуда</h5>
+                <p class="card-text">Адрес склада: Китай, г. Гуанчжоу,ПВЗ на Чжанцзяньлу</p>
+            </div>
+        </div>
+     
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Информация о грузе</h5>
+                <div class="row mb-3">
+                    
+                    <label for="track_number" class="col-md-3 col-form-label">Трек номер по Китаю</label>
+                    <div class="col-md-3">
+                        <input type="" class="form-control" id="track_number" name="track_number" required>
+                    </div>
+                </div>
+
+                    <div class="row mb-3">
+                        <div text align="center">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2 d-grid d-flex justify-content-end" >
+                                <button type="" class="btn btn-dark">Сканировать</button>
+                            </div>
+                        </div>
+                    </div>   
+                  
+              
+                <div class="row mb-3">
+                    <label for="description" class="col-md-3 col-form-label">Описание вложения</label>
+                    
+                    <div class="col-md-9">
+                        <textarea name="text" cols="50" rows="3"
+                          sid="textarea"></textarea>
+                    </div>
+                </div>
+              
+
+                <div class="row mb-3">
+                    <label for="count" class="col-md-3 col-form-label">Количество</label>
+                    <div class="col-md-2">
+                        <input type="" class="form-control" id="count" name="count" placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="weight" class="col-md-3 col-form-label">Вес (физический, кг)</label>
+                    <div class="col-md-2">
+                        <input type="" class="form-control" id="weight" name="weight" placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-md-3 col-form-label">Габариты, см</label>
+
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label for="length" class="col-md-4 col-form-label">Д:</label>
+                            <div class="col-md-8">
+                                <input name="length" class="form-control" id="length" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label for="width" class="col-md-4 col-form-label">Ш:</label>
+                            <div class="col-md-8">
+                                <input name="width" class="form-control" id="width" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label for="height" class="col-md-4 col-form-label">В:</label>
+                            <div class="col-md-8">
+                                <input name="height" class="form-control" id="height" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="weight_2" class="col-md-3 col-form-label">Вес объемный:</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="weight_2" name="weight_2" placeholder="" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Детали по доставке</h5>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="country" class="col-md-5 col-form-label">Страна:</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" id="country" name="country" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="index" class="col-md-3 col-form-label">Индекс:</label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" id="index" name="index" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="city" class="col-md-5 col-form-label">Город:</label>
+                            <div class="col-md-7">
+                                <select id="city" class="form-select" name="city" required>
+                                    {% for city in cities %}
+                                        <option >{{city}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="mode" class="col-md-5 col-form-label">Режим доставки:</label>
+                            <div class="col-md-7">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mode" id="gridRadios1" value="1" checked>
+                                    <label class="form-check-label" for="gridRadios1">Склад-Склад</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mode" id="gridRadios2" value="2">
+                                    <label class="form-check-label" for="gridRadios2">Склад-Дверь</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- карта -->
+               <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8b3505269e62ea7c30c1867a01329d0cca1a3487fd783b2f1c01869ecd1333c5&amp;width=100%25&amp;height=432&amp;lang=ru_RU&amp;scroll=true"></script>
+
+
+
+                    <table style="height: 30px;">
+                          <tbody>
+                              <tr>
+                                <td class="align-bottom"></td>
+                               </tr>
+                          </tbody>
+                    </table> 
+
+
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="address" class="col-md-5 col-form-label">Адрес:</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="tariff" class="col-md-5 col-form-label">Тариф:</label>
+                            <div class="col-md-7">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tariff" id="gridRadios3" value="1" checked>
+                                    <label class="form-check-label" for="gridRadios3">СДЭК-ЭКСПРЕСС(Авиа)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tariff" id="gridRadios4" value="2">
+                                    <label class="form-check-label" for="gridRadios4">СДЭК-МАГИСТРАЛЬНЫЙ(Авто)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="days" class="col-md-5 col-form-label">Срок доставки(дней):</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="days" placeholder="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопка-триггер аккордеона -->
+                <div class="accordion col-md-6 mb-3 p-3" id="additional_services">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="additional_services_One">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Дополнительные услуги
+                        </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="additional_services_One" data-bs-parent="#additional_services">
+                            <div class="accordion-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-8 col-form-label">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="1" id="cargo_insurance" name="insurance">
+                                            <label class="form-check-label" for="cargo_insurance">Страхование груза, Сумма, юань:</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" aria-label="" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-8 col-form-label">
+                                        <input class="form-check-input" type="checkbox" value="" id="packaging" name="packaging" onclick='showPackaging()'>
+                                        <label class="form-check-label" for="packaging">Упаковка груза:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select id="inputPackaging" class="form-select" disabled="true" name="listPackaging">
+                                            {% for package in packaging %}
+                                            <option >{{package}}</option>
+                                            {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="cost_additional_services" class="col-md-8 col-form-label">Стомость дополнительных услуг:</label>
+                                    <div class="col-md-4">
+                                        <input type="" class="form-control" id="cost_additional_services" placeholder="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="days" class="col-md-5 col-form-label">Стоимость доставки, юань:</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="days" placeholder="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label for="days" class="col-md-5 col-form-label">Итоговая стоимость, юань:</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="days" placeholder="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div text align="center" class="my-3">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-dark">Создать</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function showPackaging() {
+        var selectList = document.getElementById('inputPackaging');
+        var checkbox1 = document.getElementById('packaging');
+
+        if (checkbox1.checked) {
+            selectList.removeAttribute('disabled');
+        } else {
+            selectList.setAttribute('disabled', true);
+        }
+    }
+</script>
+
+                     
+
+    <!-- Необязательный JavaScript; выберите один из двух! -->
+
+    <!-- Вариант 1: пакет Bootstrap с Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Вариант 2: отдельные JS для Popper и Bootstrap -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
